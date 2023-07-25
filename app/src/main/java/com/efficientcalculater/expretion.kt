@@ -8,6 +8,11 @@ class Expression(private var infixExpression: MutableList<String>) {
     private fun infixToPostfix() {
         var result = ""
         val stack = Stack<String>()
+        when(infixExpression.last()[0]){
+            '-','+','×','÷'->{
+                infixExpression[infixExpression.lastIndex] = infixExpression.last().dropLast(1)
+            }
+        }
         for (element in infixExpression) {
             if (element.all { it.isDigit() } || element.any { it == '.' }) {
                 result += "$element "
